@@ -26,6 +26,9 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
 
+    - name: Install wasm-tools workload
+      run: dotnet workload install wasm-tools      
+
     - name: Build the app
       run: dotnet publish -c Release -o publish
 
@@ -37,6 +40,9 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    
     steps:
     - name: Deploy to GitHub Pages
-      uses: actions/deploy-pages@v1
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+              publish_dir: ./publish/wwwroot
