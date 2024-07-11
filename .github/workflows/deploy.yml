@@ -30,7 +30,7 @@ jobs:
       run: dotnet workload install wasm-tools      
 
     - name: Build the app
-      run: dotnet publish -c Release -o publish
+      run: dotnet publish Blazor.csproj -c:Release -p:GHPages=true -o ./publish/wwwroot --nologo
 
     - name: Upload artifact for deployment
       uses: actions/upload-pages-artifact@v1
