@@ -34,26 +34,25 @@ jobs:
 
     - name: List publish directory
       run: ls -al publish
-      
-    - name: List publish directory
-      run: ls -al ./publish   
-      
-    - name: List publish directory
-      run: ls -al ../publish
 
     - name: List publish directory
       run: ls -al /
 
-  deploy:
+  deploy-james:
     needs: build
     runs-on: ubuntu-latest
     
     steps: 
-    - name: Checkout code
-      uses: actions/checkout@v4
-    
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4.6.3
       with:
         BRANCH: gh-pages 
-        FOLDER: publish/
+        FOLDER: publish
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Deploy to GitHub Pages
+      uses: actions/deploy-pages@v4.0.5
