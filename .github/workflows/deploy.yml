@@ -30,7 +30,7 @@ jobs:
       run: dotnet workload install wasm-tools      
 
     - name: Build the app
-      run: dotnet publish Blazor.csproj -c:Release -p:GHPages=true -o ./publish/wwwroot --nologo
+      run: dotnet publish Blazor.csproj -c:Release -p:GHPages=true -o ./publish/ --nologo
 
     - name: List publish directory
       run: ls -al publish      
@@ -47,4 +47,4 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         BRANCH: gh-pages 
-        FOLDER: /
+        FOLDER: ./publish/wwwroot/
