@@ -35,16 +35,23 @@ jobs:
     - name: List publish directory
       run: ls -al publish      
 
-#    - name: Upload artifact for deployment
-#      uses: actions/upload-pages-artifact@v1
-#      with:
-#        path: ./publish/wwwroot
+    - name: Upload artifact for deployment
+      uses: actions/upload-pages-artifact@v1
+      with:
+        path: ./publish/wwwroot
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
     
     steps:
+
+    - name: Download Artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: publish
+        path: ./publish    
+    
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4
       with:
