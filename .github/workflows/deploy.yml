@@ -33,7 +33,16 @@ jobs:
       run: dotnet publish Blazor.csproj -c:Release -p:GHPages=true -o publish/ --nologo
 
     - name: List publish directory
-      run: ls -al publish      
+      run: ls -al publish
+      
+    - name: List publish directory
+      run: ls -al ./publish   
+      
+    - name: List publish directory
+      run: ls -al ../publish
+
+    - name: List publish directory
+      run: ls -al /
 
   deploy:
     needs: build
